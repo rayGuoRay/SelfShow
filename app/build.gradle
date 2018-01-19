@@ -1,0 +1,97 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.self.show.selfshow"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        flavorDimensions "1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        debug {
+            // debug sign
+        }
+
+        release {
+            // release sign
+        }
+    }
+
+    buildTypes {
+        buildTypes {
+            debug {
+                buildConfigField("boolean", "LOG_DEBUG", "true")   // 本地日志开关
+                buildConfigField("String", "BASE_URL", '"https://api.douban.com/v2/"')
+                minifyEnabled false                             // 是否开启混淆
+                zipAlignEnabled false                           // Zipalign优化
+                shrinkResources false                           // 移除无用的resource文件，只有开启混淆后有用
+                signingConfig signingConfigs.debug              // 使用对应的签名文件
+            }
+
+            release {
+                buildConfigField("boolean", "LOG_DEBUG", "false")
+                buildConfigField("String", "BASE_URL", "https://api.douban.com/v2/")
+                minifyEnabled true
+                zipAlignEnabled true
+                shrinkResources true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+
+    productFlavors {
+        tencent {}
+        xiaomi {}
+        baidu {}
+        _360 {}
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //Compile Retrofit
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
+    //Compile OkHttp
+    compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+    //Compile RxJava
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+    //Fresco
+    compile 'com.facebook.fresco:fresco:1.2.0'
+//    //Compile ButterKnife
+//    compile 'com.jakewharton:butterknife:7.0.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:7.0.1'
+//    //Compile ButterKnife for Kotlin
+//    compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
+    //Bottom NavigationBar
+    compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.1'
+}
+
+//repositories {
+//    maven {
+//        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+//    }
+//}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="home_bottom_navigation_normal" translatable="false">
+        <item>@drawable/bottom_us_rank_movie_normal</item>
+        <item>@drawable/bottom_all_rank_movie_normal</item>
+        <item>@drawable/bottom_self_collect_movie_normal</item>
+    </string-array>
+
+    <string-array name="home_bottom_navigation_active" translatable="false">
+        <item>@drawable/bottom_us_rank_movie_active</item>
+        <item>@drawable/bottom_all_rank_movie_active</item>
+        <item>@drawable/bottom_self_collect_movie_active</item>
+    </string-array>
+
+    <string-array name="home_bottom_navation_tab" translatable="true">
+        <item name="home_us_movie_rank">北美榜</item>
+        <item name="home_all_movie_rank">影史榜</item>
+        <item name="home_self_movie_collect">私享集</item>
+    </string-array>
+</resources>

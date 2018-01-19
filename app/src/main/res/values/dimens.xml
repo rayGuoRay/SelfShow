@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the config to override navigation bottom bar -->
+    <dimen name="fixed_height_bottom_padding">6dp</dimen>
+
+    <!-- the config of app -->
+    <dimen name="component_title_size">20sp</dimen>
+</resources>
