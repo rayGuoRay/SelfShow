@@ -1,17 +1,17 @@
 package com.self.show.selfshow
 
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
+import com.self.show.selfshow.base.BaseActivity
 
 /**
  * Created by guolei on 18-1-17.
  */
-class HomeActivity: AppCompatActivity(), BottomNavigationBar.OnTabSelectedListener {
+class HomeActivity: BaseActivity(), BottomNavigationBar.OnTabSelectedListener {
 
     private var mTitleTextView: TextView? = null
     private var mContentViewPager: ViewPager? = null//by bindView(R.id.home_vp_content)
@@ -30,10 +30,15 @@ class HomeActivity: AppCompatActivity(), BottomNavigationBar.OnTabSelectedListen
 
     private fun initView() {
         initBottomView()
+        initTitleView()
+    }
+
+    private fun initTitleView() {
+        mTitleTextView!!.text = mTabTextArray!![0]
     }
 
     private fun initBottomView() {
-        mTabTextArray = resources.getStringArray(R.array.home_bottom_navation_tab)
+        mTabTextArray = resources.getStringArray(R.array.home_bottom_navigation_tab)
         val bottomActiveIconArray = resources.obtainTypedArray(R.array.home_bottom_navigation_active)
         val bottomNormalIconArray = resources.obtainTypedArray(R.array.home_bottom_navigation_normal)
         for (i in mTabTextArray!!.indices) {
@@ -41,14 +46,12 @@ class HomeActivity: AppCompatActivity(), BottomNavigationBar.OnTabSelectedListen
             val normalResId = bottomNormalIconArray.getResourceId(i, 0)
             val navigationItem = BottomNavigationItem(activeResId, mTabTextArray!![i])
             navigationItem.setInactiveIconResource(normalResId)
-//            navigationItem.setActiveColor(R.color.colorDefaultActive)
-//            navigationItem.setInActiveColor(R.color.colorDefaultInActive)
             mContentBNBar!!.addItem(navigationItem)
         }
         bottomActiveIconArray.recycle()
         bottomNormalIconArray.recycle()
-//        mContentBNBar!!.setMode(BottomNavigationBar.MODE_SHIFTING)
         mContentBNBar!!.initialise()
+        mContentBNBar!!.setFirstSelectedPosition(0)
         mContentBNBar!!.setTabSelectedListener(this)
     }
 

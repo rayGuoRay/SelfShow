@@ -13,7 +13,7 @@
         <item>@drawable/bottom_self_collect_movie_active</item>
     </string-array>
 
-    <string-array name="home_bottom_navation_tab" translatable="true">
+    <string-array name="home_bottom_navigation_tab" translatable="true">
         <item name="home_us_movie_rank">北美榜</item>
         <item name="home_all_movie_rank">影史榜</item>
         <item name="home_self_movie_collect">私享集</item>
