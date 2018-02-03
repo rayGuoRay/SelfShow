@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EasyRefreshListView">
+        <attr name="normalLayout" format="reference"/>
+        <attr name="loadingLayout" format="reference"/>
+        <attr name="noMoreLayout" format="reference"/>
+        <attr name="errorLayout" format="reference"/>
+    </declare-styleable>
+</resources>

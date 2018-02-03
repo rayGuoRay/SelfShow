@@ -19,10 +19,10 @@ class RetrofitWrapper private constructor() {
 
     init {
         val interceptor = HttpLoggingInterceptor()
-        if (AppConfig.LOG_DEBUG)
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        else
-            interceptor.setLevel(HttpLoggingInterceptor.Level.NONE)
+//        if (AppConfig.LOG_DEBUG)
+//            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+//        else
+//            interceptor.setLevel(HttpLoggingInterceptor.Level.NONE)
         val okHttpClient: OkHttpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .retryOnConnectionFailure(true)
@@ -42,55 +42,5 @@ class RetrofitWrapper private constructor() {
         val instance by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
             RetrofitWrapper()
         }
-
-//        @Volatile
-//        private var instance: RetrofitWrapper? = null
-
-//        fun getInstance(): RetrofitWrapper {
-//            return null;
-//        }
-
-
-//        @Volatile
-//
-//
-//        fun getInstance(): RetrofitWrapper {
-//            if (instance == null) {
-//                synchronized(RetrofitWrapper::class) {
-//                    if (instance == null) {
-//                        instance = RetrofitWrapper()
-//                    }
-//                }
-//            }
-//            return instance!!
-//        }
     }
-
-//    private var retrofit: Retrofit = initRetrofit()
-//
-//    private object Holder { val INSTANCE = RetrofitWrapper() }
-//
-//    companion object{
-//        val instance: RetrofitWrapper by lazy { Holder.INSTANCE }
-//    }
-//
-//    private fun initRetrofit(): Retrofit {
-//        val interceptor = HttpLoggingInterceptor()
-//        if (AppConfig.LOG_DEBUG)
-//            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-//        else
-//            interceptor.setLevel(HttpLoggingInterceptor.Level.NONE)
-//        val okHttpClient: OkHttpClient = OkHttpClient.Builder()
-//                .addInterceptor(HttpLoggingInterceptor().setLevel(interceptor))
-//                .retryOnConnectionFailure(true)
-//                .connectTimeout(1000, TimeUnit.SECONDS)
-//                .readTimeout(1000, TimeUnit.SECONDS)
-//                .build()
-//        return  Retrofit.Builder()
-//                .baseUrl("")
-//                .client(okHttpClient)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//                .build()
-//    }
 }

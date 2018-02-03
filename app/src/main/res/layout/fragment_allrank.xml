@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:easyrefreshlist="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.self.show.selfshow.widget.EasyListRefreshView
+        android:id="@+id/all_rank_easy_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        easyrefreshlist:normalLayout="@layout/layout_item_normal"
+        easyrefreshlist:loadingLayout="@layout/layout_item_loading"
+        easyrefreshlist:noMoreLayout="@layout/layout_item_no_more"
+        easyrefreshlist:errorLayout="@layout/layout_item_error"/>
+</android.support.constraint.ConstraintLayout>

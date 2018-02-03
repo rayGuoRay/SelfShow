@@ -4,6 +4,7 @@
     package="com.self.show.selfshow">
 
     <application
+        android:name=".AppApplication"
         tools:replace="android:allowBackup,icon,theme,label"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
