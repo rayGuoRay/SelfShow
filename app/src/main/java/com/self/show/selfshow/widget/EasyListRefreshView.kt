@@ -44,6 +44,7 @@ class EasyListRefreshView constructor(context: Context, attrs: AttributeSet): Sw
 
     fun setSourceList(list: List<*>) {
         mEasyRefreshAdapter.setSource(list)
+        mEasyRefreshAdapter.notifyDataSetChanged()
     }
 
     fun getSourceList(): List<*>? {

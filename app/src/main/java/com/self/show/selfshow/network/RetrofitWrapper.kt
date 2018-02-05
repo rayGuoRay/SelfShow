@@ -19,10 +19,10 @@ class RetrofitWrapper private constructor() {
 
     init {
         val interceptor = HttpLoggingInterceptor()
-//        if (AppConfig.LOG_DEBUG)
-//            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-//        else
-//            interceptor.setLevel(HttpLoggingInterceptor.Level.NONE)
+        if (AppConfig.LOG_DEBUG)
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        else
+            interceptor.setLevel(HttpLoggingInterceptor.Level.NONE)
         val okHttpClient: OkHttpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
                 .retryOnConnectionFailure(true)

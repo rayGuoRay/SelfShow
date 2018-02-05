@@ -12,6 +12,7 @@ import com.self.show.selfshow.base.BaseFragment
 import com.self.show.selfshow.bean.MovieList
 import com.self.show.selfshow.bean.MovieSubject
 import com.self.show.selfshow.network.RetrofitWrapper
+import com.self.show.selfshow.utils.LogUtils
 import com.self.show.selfshow.widget.EasyListRefreshView
 import com.self.show.selfshow.widget.EasyRefreshAdapter
 import rx.android.schedulers.AndroidSchedulers
@@ -23,7 +24,7 @@ import rx.schedulers.Schedulers
 class AllRankFragment: BaseFragment() {
 
     private lateinit var mEasyList: EasyListRefreshView
-//    private lateinit var mRankList: List<MovieSubject>
+    private lateinit var mRankList: List<MovieSubject>
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater!!.inflate(R.layout.fragment_allrank, container, false)
@@ -38,26 +39,28 @@ class AllRankFragment: BaseFragment() {
             }
 
             override fun onBindNormal(holder: RecyclerView.ViewHolder, position: Int) {
-                var subject = mEasyList.getSourceList()!![position] as MovieSubject
-                (holder as MovieRankNormalViewHolder).movieTitle.text = subject.title
-                (holder as MovieRankNormalViewHolder).moviePic.setImageURI(subject.images.large)
+                (holder as MovieRankNormalViewHolder).movieTitle.text = mRankList[position].title
+                (holder as MovieRankNormalViewHolder).moviePic.setImageURI(mRankList[position].images.large)
             }
         })
         onTopLoadStart()
     }
 
 
-    fun onTopLoadStart() {
+    private fun onTopLoadStart() {
         val rankMovieList = RetrofitWrapper.instance.mNetWorkApi.getTop250(0, 10)
         rankMovieList.map { movieList: MovieList? -> movieList!!.subjects }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { movieList -> mEasyList.setSourceList(movieList) }
+                .subscribe { movieList ->
+                    mEasyList.setSourceList(movieList)
+                    mRankList = movieList
+                }
     }
 
     inner class MovieRankNormalViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        lateinit var movieTitle: TextView
-        lateinit var moviePic: SimpleDraweeView
+        var movieTitle: TextView
+        var moviePic: SimpleDraweeView
 
         init {
             movieTitle = view.findViewById(R.id.movie_title)

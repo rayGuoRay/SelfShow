@@ -36,7 +36,6 @@ class EasyRefreshAdapter(context: Context): RecyclerView.Adapter<RecyclerView.Vi
 
     fun setSource(list: List<*>) {
         mEasySourceList = list
-        notifyDataSetChanged()
     }
 
     fun getSource(): List<*>? {
