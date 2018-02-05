@@ -69,6 +69,7 @@ class EasyListRefreshView constructor(context: Context, attrs: AttributeSet): Sw
         mRecyclerView = easyListView.findViewById(R.id.component_easy_list_recycler_view)
         mLinearLayoutManager = LinearLayoutManager(context)
         mRecyclerView.layoutManager = mLinearLayoutManager
+        mRecyclerView.adapter = mEasyRefreshAdapter
         mRecyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

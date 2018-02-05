@@ -12,7 +12,6 @@ import com.self.show.selfshow.base.BaseFragment
 import com.self.show.selfshow.bean.MovieList
 import com.self.show.selfshow.bean.MovieSubject
 import com.self.show.selfshow.network.RetrofitWrapper
-import com.self.show.selfshow.utils.LogUtils
 import com.self.show.selfshow.widget.EasyListRefreshView
 import com.self.show.selfshow.widget.EasyRefreshAdapter
 import rx.android.schedulers.AndroidSchedulers
