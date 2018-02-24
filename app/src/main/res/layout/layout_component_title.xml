@@ -17,10 +17,4 @@
             android:textColor="@color/colorTitleColor"
             android:textSize="@dimen/component_title_size"/>
     </RelativeLayout>
-
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@drawable/title_bar_shadow"-->
-        <!--android:importantForAccessibility="no"/>-->
 </LinearLayout>

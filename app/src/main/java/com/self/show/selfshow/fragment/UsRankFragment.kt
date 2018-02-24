@@ -1,5 +1,6 @@
 package com.self.show.selfshow.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.facebook.drawee.view.SimpleDraweeView
+import com.self.show.selfshow.MovieDetailActivity
 import com.self.show.selfshow.R
 import com.self.show.selfshow.base.BaseFragment
 import com.self.show.selfshow.bean.UsBoxMovie
@@ -36,7 +38,7 @@ class UsRankFragment: BaseFragment() {
 
     override fun loadData() {
         super.loadData()
-        mUsEasyRefresh.bindAdapter(object: EasyRefreshAdapter.EasyHolderCallback{
+        mUsEasyRefresh.bindAdapter(object : EasyRefreshAdapter.EasyHolderCallback {
             override fun onCreateNormal(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
                 return MovieRankNormalViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_item_normal, parent, false))
             }
@@ -47,11 +49,12 @@ class UsRankFragment: BaseFragment() {
                 } else {
                     (holder.itemView.layoutParams as RecyclerView.LayoutParams).topMargin = 0
                 }
+                holder.itemView.setOnClickListener({skipToMovieDetailPage(mUsRankList[position].subject.id)})
                 (holder as UsRankFragment.MovieRankNormalViewHolder).movieTitle.text = mUsRankList[position].subject.title
                 (holder as UsRankFragment.MovieRankNormalViewHolder).moviePic.setImageURI(mUsRankList[position].subject.images.large)
             }
         })
-        mUsEasyRefresh.setSlideCallback(object: EasyListRefreshView.SlideCallback {
+        mUsEasyRefresh.setSlideCallback(object : EasyListRefreshView.SlideCallback {
             override fun onSlideToTopLoad() {
                 requestData()
             }
@@ -75,7 +78,7 @@ class UsRankFragment: BaseFragment() {
                 }
     }
 
-    inner class MovieRankNormalViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    inner class MovieRankNormalViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var movieTitle: TextView
         var moviePic: SimpleDraweeView
 
@@ -83,5 +86,11 @@ class UsRankFragment: BaseFragment() {
             movieTitle = view.findViewById(R.id.movie_title)
             moviePic = view.findViewById(R.id.movie_pic)
         }
+    }
+
+    private fun skipToMovieDetailPage(movieId: String) {
+        val intent = Intent(context, MovieDetailActivity::class.java)
+        intent.putExtra(MovieDetailActivity.KEY_MOVIE_ID, movieId)
+        startActivity(intent)
     }
 }

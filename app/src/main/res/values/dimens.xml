@@ -11,4 +11,9 @@
     <dimen name="card_elevation_size">5dp</dimen>
     <dimen name="card_padding_vertical_size">9dp</dimen>
     <dimen name="card_padding_horizontal_size">6dp</dimen>
+
+    <!-- the config of poster -->
+    <dimen name="poster_padding_vertical_size">-20dp</dimen>
+    <dimen name="poster_width_size">189dp</dimen>
+    <dimen name="poster_height_size">280dp</dimen>
 </resources>

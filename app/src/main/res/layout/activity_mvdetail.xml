@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.self.show.selfshow.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/title_bar_shadow"
+            android:importantForAccessibility="no"/>
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/poster_image"
+            android:layout_width="@dimen/poster_width_size"
+            android:layout_height="@dimen/poster_height_size"
+            android:layout_marginTop="@dimen/poster_padding_vertical_size"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+</ScrollView>
