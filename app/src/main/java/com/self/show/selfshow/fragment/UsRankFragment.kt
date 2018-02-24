@@ -42,6 +42,11 @@ class UsRankFragment: BaseFragment() {
             }
 
             override fun onBindNormal(holder: RecyclerView.ViewHolder, position: Int) {
+                if (position == 0) {
+                    (holder.itemView.layoutParams as RecyclerView.LayoutParams).topMargin = context.resources.getDimensionPixelSize(R.dimen.card_padding_vertical_size)
+                } else {
+                    (holder.itemView.layoutParams as RecyclerView.LayoutParams).topMargin = 0
+                }
                 (holder as UsRankFragment.MovieRankNormalViewHolder).movieTitle.text = mUsRankList[position].subject.title
                 (holder as UsRankFragment.MovieRankNormalViewHolder).moviePic.setImageURI(mUsRankList[position].subject.images.large)
             }
