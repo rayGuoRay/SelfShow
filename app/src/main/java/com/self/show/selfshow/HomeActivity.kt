@@ -12,6 +12,7 @@ import com.self.show.selfshow.base.BaseActivity
 import com.self.show.selfshow.fragment.AllRankFragment
 import com.self.show.selfshow.fragment.SelfCollectFragment
 import com.self.show.selfshow.fragment.UsRankFragment
+import org.w3c.dom.Text
 
 /**
  * Created by guolei on 18-1-17.
@@ -27,9 +28,9 @@ class HomeActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        mTitleTextView = findViewById(R.id.component_title)
-        mContentViewPager = findViewById(R.id.home_vp_content)
-        mContentBNBar = findViewById(R.id.home_bn_bar)
+        mTitleTextView = findViewById(R.id.component_title) as TextView
+        mContentViewPager = findViewById(R.id.home_vp_content) as ViewPager
+        mContentBNBar = findViewById(R.id.home_bn_bar) as BottomNavigationBar
         initView()
     }
 

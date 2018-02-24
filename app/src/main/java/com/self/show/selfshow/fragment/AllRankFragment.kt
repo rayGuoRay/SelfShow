@@ -42,6 +42,16 @@ class AllRankFragment: BaseFragment() {
                 (holder as MovieRankNormalViewHolder).moviePic.setImageURI(mRankList[position].images.large)
             }
         })
+        mEasyList.setSlideCallback(object: EasyListRefreshView.SlideCallback{
+            override fun onSlideToTopLoad() {
+                onTopLoadStart()
+            }
+
+            override fun onSlideToBottomLoad(lastPosition: Int) {
+
+            }
+        })
+        mEasyList.setSwipeRefresh(true)
         onTopLoadStart()
     }
 
@@ -54,6 +64,7 @@ class AllRankFragment: BaseFragment() {
                 .subscribe { movieList ->
                     mEasyList.setSourceList(movieList)
                     mRankList = movieList
+                    mEasyList.setSwipeRefresh(false)
                 }
     }
 

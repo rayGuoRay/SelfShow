@@ -1,6 +1,7 @@
 package com.self.show.selfshow.fragment
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,8 @@ class UsRankFragment: BaseFragment() {
     private lateinit var mUsEasyRefresh: EasyListRefreshView
     private lateinit var mUsRankList: List<UsBoxMovie>
 
+    private var mHandler = Handler()
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater!!.inflate(R.layout.fragment_usrank, container, false)
         mUsEasyRefresh = rootView.findViewById(R.id.us_rank_easy_refresh)
@@ -43,12 +46,27 @@ class UsRankFragment: BaseFragment() {
                 (holder as UsRankFragment.MovieRankNormalViewHolder).moviePic.setImageURI(mUsRankList[position].subject.images.large)
             }
         })
+        mUsEasyRefresh.setSlideCallback(object: EasyListRefreshView.SlideCallback {
+            override fun onSlideToTopLoad() {
+                requestData()
+            }
+
+            override fun onSlideToBottomLoad(lastPosition: Int) {
+                // do nothing
+            }
+        })
+        mUsEasyRefresh.setSwipeRefresh(true)
+        requestData()
+    }
+
+    private fun requestData() {
         val usRankBox = RetrofitWrapper.instance.mNetWorkApi.getUsBox()
         usRankBox.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { usBoxMovieList: UsBoxMovieList? ->
+                    mUsRankList = usBoxMovieList!!.subjects
                     mUsEasyRefresh.setSourceList(usBoxMovieList!!.subjects)
-                    mUsRankList = usBoxMovieList.subjects
+                    mUsEasyRefresh.setSwipeRefresh(false)
                 }
     }
 

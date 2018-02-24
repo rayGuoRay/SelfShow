@@ -5,4 +5,10 @@
 
     <!-- the config of app -->
     <dimen name="component_title_size">20sp</dimen>
+
+    <!-- the config of card -->
+    <dimen name="card_radius_size">5dp</dimen>
+    <dimen name="card_elevation_size">5dp</dimen>
+    <dimen name="card_padding_vertical_size">9dp</dimen>
+    <dimen name="card_padding_horizontal_size">6dp</dimen>
 </resources>

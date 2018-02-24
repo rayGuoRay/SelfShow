@@ -1,6 +1,7 @@
 package com.self.show.selfshow.widget
 
 import android.content.Context
+import android.os.Handler
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -21,11 +22,12 @@ class EasyListRefreshView constructor(context: Context, attrs: AttributeSet): Sw
     private lateinit var mEasyRefreshAdapter: EasyRefreshAdapter
     private var mIsLoadingMore: Boolean = false
     private var mSlideCallback: SlideCallback? = null
+    private var mHandler: Handler? = null
 
 
     interface SlideCallback {
-        fun onSlideToTopToLoad()
-        fun onSlideToBottomToLoad(lastPosition: Int)
+        fun onSlideToTopLoad()
+        fun onSlideToBottomLoad(lastPosition: Int)
     }
 
     init {
@@ -47,6 +49,11 @@ class EasyListRefreshView constructor(context: Context, attrs: AttributeSet): Sw
         mEasyRefreshAdapter.notifyDataSetChanged()
     }
 
+    fun setSwipeRefresh(isRefreshingParam: Boolean) {
+        isRefreshing = isRefreshingParam
+        mSwipeRefreshLayout.isRefreshing = isRefreshingParam
+    }
+
     fun getSourceList(): List<*>? {
         return mEasyRefreshAdapter.getSource()
     }
@@ -60,6 +67,8 @@ class EasyListRefreshView constructor(context: Context, attrs: AttributeSet): Sw
         typedArray.recycle()
         mEasyRefreshAdapter = EasyRefreshAdapter(context)
         mEasyRefreshAdapter.bindRelativeLayout(normalLayoutId, loadingLayoutId, noMoreLayoutId, errorLayoutId)
+
+        mHandler = Handler()
     }
 
     private fun initView() {
@@ -80,7 +89,7 @@ class EasyListRefreshView constructor(context: Context, attrs: AttributeSet): Sw
 
     override fun onRefresh() {
         if (mSlideCallback != null) {
-            mSlideCallback!!.onSlideToTopToLoad()
+            mSlideCallback!!.onSlideToTopLoad()
         }
     }
 
@@ -94,7 +103,7 @@ class EasyListRefreshView constructor(context: Context, attrs: AttributeSet): Sw
             if (!mIsLoadingMore) {
                 mIsLoadingMore = true
                 if (mSlideCallback != null) {
-                    mSlideCallback!!.onSlideToBottomToLoad(lastVisiblePosition)
+                    mSlideCallback!!.onSlideToBottomLoad(lastVisiblePosition)
                 }
             }
         }
