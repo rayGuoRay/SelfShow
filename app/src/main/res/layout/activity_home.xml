@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@color/color_common_white_bg"
     tools:context="com.self.show.selfshow.HomeActivity">
 
     <include layout="@layout/layout_component_title"/>

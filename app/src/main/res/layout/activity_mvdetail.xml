@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.self.show.selfshow.MainActivity">
+    android:background="@color/colorBlackActive"
+    tools:context="com.self.show.selfshow.MovieDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,5 +25,38 @@
             android:layout_height="@dimen/poster_height_size"
             android:layout_marginTop="@dimen/poster_padding_vertical_size"
             android:layout_gravity="center_horizontal"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/poster_padding_horizontal_size">
+
+            <TextView
+                android:id="@+id/mv_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/movie_rating_text_size"
+                android:textColor="@color/colorTitleColor"/>
+
+            <TextView
+                android:id="@+id/mv_star_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTitleColor"
+                android:textStyle="bold"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/movie_rating_text_size"
+                android:drawableStart="@drawable/icon_star"
+                android:drawableLeft="@drawable/icon_star"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/mv_summary_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_summary_text_size"
+            android:textColor="@color/colorTitleColor"
+            android:padding="@dimen/poster_padding_horizontal_size"/>
     </LinearLayout>
 </ScrollView>

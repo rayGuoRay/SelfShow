@@ -13,6 +13,9 @@
     <dimen name="card_padding_horizontal_size">6dp</dimen>
 
     <!-- the config of poster -->
+    <dimen name="movie_rating_text_size">24sp</dimen>
+    <dimen name="movie_summary_text_size">18sp</dimen>
+    <dimen name="poster_padding_horizontal_size">10dp</dimen>
     <dimen name="poster_padding_vertical_size">-20dp</dimen>
     <dimen name="poster_width_size">189dp</dimen>
     <dimen name="poster_height_size">280dp</dimen>

@@ -6,4 +6,6 @@
     <color name="colorTitleColor">#FFFFFF</color>
     <color name="colorBlackActive">#000000</color>
     <color name="colorGrayInActive">#8C8C8C</color>
+
+    <color name="color_common_white_bg">#FFFFFF</color>
 </resources>
